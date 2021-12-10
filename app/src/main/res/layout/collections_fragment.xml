@@ -1,0 +1,829 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cf_constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".fragments.CollectionsFragment">
+
+
+            <TextView
+                android:id="@+id/cf_tv_addingBeginning"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/adding_in_the_beginning"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <FrameLayout
+                android:id="@+id/cf_fl_addBegin_arraylist"
+                android:layout_width="120dp"
+                android:layout_height="60dp"
+                app:layout_constraintEnd_toStartOf="@+id/cf_fl_addBegin_linkedList"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cf_tv_addingBeginning">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/arrayList">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/cf_et_addBegin_arraylist"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:enabled="false"
+                        android:text="@string/space"
+                        tools:ignore="DuplicateSpeakableTextCheck" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/cf_cpi_addBegin_arraylist"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center|bottom"
+                    android:indeterminate="true" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/cf_fl_addBegin_linkedList"
+                android:layout_width="120dp"
+                android:layout_height="60dp"
+                app:layout_constraintEnd_toStartOf="@+id/cf_fl_addBegin_CopyOnWrite"
+                app:layout_constraintStart_toEndOf="@id/cf_fl_addBegin_arraylist"
+                app:layout_constraintTop_toBottomOf="@+id/cf_tv_addingBeginning">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:hint="@string/linkedList">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/cf_et_addBegin_linkedList"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:enabled="false"
+                        android:text="@string/space" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/cf_cpi_addBegin_linkedList"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center|bottom"
+                    android:indeterminate="true" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/cf_fl_addBegin_CopyOnWrite"
+                android:layout_width="120dp"
+                android:layout_height="60dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/cf_fl_addBegin_linkedList"
+                app:layout_constraintTop_toBottomOf="@+id/cf_tv_addingBeginning">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:hint="@string/copyOnWrite">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/cf_et_addBegin_CopyOnWrite"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:enabled="false"
+                        android:text="@string/space" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/cf_cpi_addBegin_CopyOnWrite"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center|bottom"
+                    android:indeterminate="true" />
+
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/cf_tv_addingMiddle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/adding_in_the_middle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cf_fl_addBegin_arraylist" />
+
+            <FrameLayout
+                android:id="@+id/cf_fl_addMiddle_arraylist"
+                android:layout_width="120dp"
+                android:layout_height="60dp"
+                app:layout_constraintEnd_toStartOf="@+id/cf_fl_addBegin_linkedList"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cf_tv_addingMiddle">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:hint="@string/arrayList">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/cf_et_addMiddle_arraylist"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:enabled="false"
+                        android:text="@string/space" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/cf_cpi_addMiddle_arrayList"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center|bottom"
+                    android:indeterminate="true" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/cf_fl_addMiddle_linkedList"
+                android:layout_width="120dp"
+                android:layout_height="60dp"
+                app:layout_constraintEnd_toStartOf="@+id/cf_fl_addBegin_CopyOnWrite"
+                app:layout_constraintStart_toEndOf="@id/cf_fl_addMiddle_arraylist"
+                app:layout_constraintTop_toBottomOf="@+id/cf_tv_addingMiddle">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:hint="@string/linkedList">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/cf_et_addMiddle_linkedList"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:enabled="false"
+                        android:text="@string/space" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/cf_cpi_addMiddle_linkedList"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center|bottom"
+                    android:indeterminate="true" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/cf_fl_addMiddle_CopyOnWrite"
+                android:layout_width="120dp"
+                android:layout_height="60dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/cf_fl_addBegin_linkedList"
+                app:layout_constraintTop_toBottomOf="@+id/cf_tv_addingMiddle">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:hint="@string/copyOnWrite">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/cf_et_addMiddle_CopyOnWrite"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:enabled="false"
+                        android:text="@string/space" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/cf_cpi_addMiddle_CopyOnWrite"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center|bottom"
+                    android:indeterminate="true" />
+
+            </FrameLayout>
+
+
+            <TextView
+                android:id="@+id/cf_tv_addingEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/adding_in_the_end"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cf_fl_addMiddle_arraylist" />
+
+            <FrameLayout
+                android:id="@+id/cf_fl_addEnd_arraylist"
+                android:layout_width="120dp"
+                android:layout_height="60dp"
+                app:layout_constraintEnd_toStartOf="@+id/cf_fl_addBegin_linkedList"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cf_tv_addingEnd">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:hint="@string/arrayList">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/cf_et_addEnd_arraylist"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:enabled="false"
+                        android:text="@string/space" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/cf_cpi_addEnd_arraylist"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center|bottom"
+                    android:indeterminate="true" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/cf_fl_addEnd_linkedList"
+                android:layout_width="120dp"
+                android:layout_height="60dp"
+                app:layout_constraintEnd_toStartOf="@+id/cf_fl_addBegin_CopyOnWrite"
+                app:layout_constraintStart_toEndOf="@id/cf_fl_addMiddle_arraylist"
+                app:layout_constraintTop_toBottomOf="@+id/cf_tv_addingEnd">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:hint="@string/linkedList">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/cf_et_addEnd_linkedList"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:enabled="false"
+                        android:text="@string/space" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/cf_cpi_addEnd_LinkedList"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center|bottom"
+                    android:indeterminate="true" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/cf_fl_addEnd_CopyOnWrite"
+                android:layout_width="120dp"
+                android:layout_height="60dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/cf_fl_addBegin_linkedList"
+                app:layout_constraintTop_toBottomOf="@+id/cf_tv_addingEnd">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:hint="@string/copyOnWrite">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/cf_et_addEnd_CopyOnWrite"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:enabled="false"
+                        android:text="@string/space" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/cf_cpi_addEnd_CopyOnWriteList"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center|bottom"
+                    android:indeterminate="true" />
+
+            </FrameLayout>
+
+
+            <TextView
+                android:id="@+id/cf_tv_SearchByValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/search_by_value"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cf_fl_addEnd_arraylist" />
+
+            <FrameLayout
+                android:id="@+id/cf_fl_search_arraylist"
+                android:layout_width="120dp"
+                android:layout_height="60dp"
+                app:layout_constraintEnd_toStartOf="@+id/cf_fl_addBegin_linkedList"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cf_tv_SearchByValue">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:hint="@string/arrayList">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/cf_et_search_arraylist"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:enabled="false"
+                        android:text="@string/space" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/cf_cpi_search_arrayList"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center|bottom"
+                    android:indeterminate="true" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/cf_fl_search_linkedList"
+                android:layout_width="120dp"
+                android:layout_height="60dp"
+                app:layout_constraintEnd_toStartOf="@+id/cf_fl_addBegin_CopyOnWrite"
+                app:layout_constraintStart_toEndOf="@id/cf_fl_addMiddle_arraylist"
+                app:layout_constraintTop_toBottomOf="@+id/cf_tv_SearchByValue">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:hint="@string/linkedList">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/cf_et_search_linkedList"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:enabled="false"
+                        android:text="@string/space" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/cf_cpi_search_linkedList"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center|bottom"
+                    android:indeterminate="true" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/cf_fl_search_CopyOnWrite"
+                android:layout_width="120dp"
+                android:layout_height="60dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/cf_fl_addBegin_linkedList"
+                app:layout_constraintTop_toBottomOf="@+id/cf_tv_SearchByValue">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:hint="@string/copyOnWrite">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/cf_et_search_CopyOnWrite"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:enabled="false"
+                        android:text="@string/space" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/cf_cpi_search_CopyOnWrite"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center|bottom"
+                    android:indeterminate="true" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/cf_tv_removing_beginning"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/removing_in_the_beginning"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cf_fl_search_arraylist" />
+
+            <FrameLayout
+                android:id="@+id/cf_fl_removing_beginning_arraylist"
+                android:layout_width="120dp"
+                android:layout_height="60dp"
+                app:layout_constraintEnd_toStartOf="@+id/cf_fl_addBegin_linkedList"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cf_tv_removing_beginning">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:hint="@string/arrayList">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/cf_et_removing_beginning_arraylist"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:enabled="false"
+                        android:text="@string/space" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/cf_cpi_removing_beginning_arraylist"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center|bottom"
+                    android:indeterminate="true" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/cf_fl_removing_beginning_linkedList"
+                android:layout_width="120dp"
+                android:layout_height="60dp"
+                app:layout_constraintEnd_toStartOf="@+id/cf_fl_addBegin_CopyOnWrite"
+                app:layout_constraintStart_toEndOf="@id/cf_fl_addMiddle_arraylist"
+                app:layout_constraintTop_toBottomOf="@+id/cf_tv_removing_beginning">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:hint="@string/linkedList">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/cf_et_removing_beginning_linkedList"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:enabled="false"
+                        android:text="@string/space" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/cf_cpi_removing_beginning_linkedList"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center|bottom"
+                    android:indeterminate="true" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/cf_fl_removing_beginning_CopyOnWrite"
+                android:layout_width="120dp"
+                android:layout_height="60dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/cf_fl_addBegin_linkedList"
+                app:layout_constraintTop_toBottomOf="@+id/cf_tv_removing_beginning">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:hint="@string/copyOnWrite">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/cf_et_removing_beginning_CopyOnWrite"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:enabled="false"
+                        android:text="@string/space" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/cf_cpi_removing_beginning_CopyOnWrite"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center|bottom"
+                    android:indeterminate="true" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/cf_tv_removing_middle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/removing_in_the_middle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cf_fl_removing_beginning_arraylist" />
+
+            <FrameLayout
+                android:id="@+id/cf_fl_removing_middle_arraylist"
+                android:layout_width="120dp"
+                android:layout_height="60dp"
+                app:layout_constraintEnd_toStartOf="@+id/cf_fl_addBegin_linkedList"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cf_tv_removing_middle">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:hint="@string/arrayList">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/cf_et_removing_middle_arraylist"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:enabled="false"
+                        android:text="@string/space" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/cf_cpi_removing_middle_arrayList"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center|bottom"
+                    android:indeterminate="true" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/cf_fl_removing_middle_linkedList"
+                android:layout_width="120dp"
+                android:layout_height="60dp"
+                app:layout_constraintEnd_toStartOf="@+id/cf_fl_addBegin_CopyOnWrite"
+                app:layout_constraintStart_toEndOf="@id/cf_fl_addMiddle_arraylist"
+                app:layout_constraintTop_toBottomOf="@+id/cf_tv_removing_middle">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:hint="@string/linkedList">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/cf_et_removing_middle_linkedList"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:enabled="false"
+                        android:text="@string/space" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/cf_cpi_removing_middle_linkedList"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center|bottom"
+                    android:indeterminate="true" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/cf_fl_removing_middle_CopyOnWrite"
+                android:layout_width="120dp"
+                android:layout_height="60dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/cf_fl_addBegin_linkedList"
+                app:layout_constraintTop_toBottomOf="@+id/cf_tv_removing_middle">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:hint="@string/copyOnWrite">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/cf_et_removing_middle_CopyOnWrite"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:enabled="false"
+                        android:text="@string/space" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/cf_cpi_removing_middle_copyOnWrite"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center|bottom"
+                    android:indeterminate="true" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/cf_tv_removing_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/removing_in_the_end"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cf_fl_removing_middle_arraylist" />
+
+            <FrameLayout
+                android:id="@+id/cf_fl_removing_end_arraylist"
+                android:layout_width="120dp"
+                android:layout_height="60dp"
+                app:layout_constraintEnd_toStartOf="@+id/cf_fl_addBegin_linkedList"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cf_tv_removing_end">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:hint="@string/arrayList">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/cf_et_removing_end_arraylist"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:enabled="false"
+                        android:text="@string/space" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/cf_cpi_removing_end_arraylist"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center|bottom"
+                    android:indeterminate="true" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/cf_fl_removing_end_linkedList"
+                android:layout_width="120dp"
+                android:layout_height="60dp"
+                app:layout_constraintEnd_toStartOf="@+id/cf_fl_addBegin_CopyOnWrite"
+                app:layout_constraintStart_toEndOf="@id/cf_fl_addMiddle_arraylist"
+                app:layout_constraintTop_toBottomOf="@+id/cf_tv_removing_end">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:hint="@string/linkedList">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/cf_et_removing_end_linkedList"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:enabled="false"
+                        android:text="@string/space" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/cf_cpi_removing_end_linkedList"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center|bottom"
+                    android:indeterminate="true" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/cf_fl_removing_end_CopyOnWrite"
+                android:layout_width="120dp"
+                android:layout_height="60dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/cf_fl_addBegin_linkedList"
+                app:layout_constraintTop_toBottomOf="@+id/cf_tv_removing_end">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:hint="@string/copyOnWrite">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/cf_et_removing_end_CopyOnWrite"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:enabled="false"
+                        android:text="@string/space" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/cf_cpi_removing_end_CopyOnWrite"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center|bottom"
+                    android:indeterminate="true" />
+            </FrameLayout>
+
+            <Button
+                android:id="@+id/cf_btn_clear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="@string/clear"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cf_fl_removing_end_linkedList" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/cf_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/collection_size_desc"
+            android:textSize="20sp" />
+
+        <FrameLayout
+            android:id="@+id/cf_frameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="450dp"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|top"
+                android:layout_margin="16dp"
+                android:hint="@string/collection_size">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/cf_et_collectionSize"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="number" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/cf_btn_calculate"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:layout_margin="16dp"
+                android:layout_gravity="center|bottom"
+                android:text="@string/calculate"
+                android:textSize="25sp" />
+        </FrameLayout>
+    </LinearLayout>
+
+
+</ScrollView>

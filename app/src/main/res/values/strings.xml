@@ -2,4 +2,26 @@
     <string name="app_name">task3</string>
     <string name="maps">Maps</string>
     <string name="collections">Collections</string>
+    <string name="copyOnWrite">CopyOnWrite</string>
+    <string name="linkedList">LinkedList</string>
+    <string name="arrayList">ArrayList</string>
+    <string name="adding_in_the_middle">Adding in the middle</string>
+    <string name="adding_in_the_beginning">Adding in the beginning</string>
+    <string name="space">" "</string>
+    <string name="adding_in_the_end">Adding in the end</string>
+    <string name="search_by_value">Search by value</string>
+    <string name="removing_in_the_beginning">Removing in the beginning</string>
+    <string name="removing_in_the_middle">Removing in the middle</string>
+    <string name="removing_in_the_end">Removing in the end</string>
+    <string name="clear">CLEAR</string>
+    <string name="collection_size_desc">Please enter collection size and number of elements to compare</string>
+    <string name="map_size_desc">Please enter map size and number of elements to compare</string>
+    <string name="collection_size">Collection Size</string>
+    <string name="calculate">CALCULATE</string>
+    <string name="adding_new">Adding new</string>
+    <string name="search_by_key">Search by key</string>
+    <string name="removing">Removing</string>
+    <string name="hashmap">HashMap</string>
+    <string name="treemap">TreeMap</string>
+    <string name="map_size">Map size</string>
 </resources>
