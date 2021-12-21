@@ -10,6 +10,7 @@
         android:id="@+id/mf_constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="gone"
         tools:context=".fragments.MapsFragment">
 
 
@@ -22,71 +23,23 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <FrameLayout
-            android:id="@+id/mf_fl_adding_hashMap"
+        <com.example.task3.customview.ResultView
+            android:id="@+id/mf_rv_adding_hashMap"
             android:layout_width="120dp"
             android:layout_height="60dp"
-            app:layout_constraintEnd_toStartOf="@+id/mf_fl_adding_treeMap"
+            app:layout_constraintEnd_toStartOf="@+id/mf_rv_adding_treeMap"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mf_tv_addingNew">
+            app:layout_constraintTop_toBottomOf="@+id/mf_tv_addingNew"
+            app:rv_head="@string/hashmap" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="@string/hashmap">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/mf_et_adding_hashMap"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:enabled="false"
-                    android:text="@string/space"
-                    tools:ignore="DuplicateSpeakableTextCheck" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.progressindicator.CircularProgressIndicator
-                android:id="@+id/mf_cpi_adding_hashMap"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center|bottom"
-                android:indeterminate="true" />
-
-        </FrameLayout>
-
-        <FrameLayout
-            android:id="@+id/mf_fl_adding_treeMap"
+        <com.example.task3.customview.ResultView
+            android:id="@+id/mf_rv_adding_treeMap"
             android:layout_width="120dp"
             android:layout_height="60dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/mf_fl_adding_hashMap"
-            app:layout_constraintTop_toBottomOf="@+id/mf_tv_addingNew">
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="@string/treemap">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/mf_et_adding_treeMap"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:enabled="false"
-                    android:text="@string/space"
-                    tools:ignore="DuplicateSpeakableTextCheck" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.progressindicator.CircularProgressIndicator
-                android:id="@+id/mf_cpi_adding_treeMap"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center|bottom"
-                android:indeterminate="true" />
-
-        </FrameLayout>
+            app:layout_constraintStart_toEndOf="@+id/mf_rv_adding_hashMap"
+            app:layout_constraintTop_toBottomOf="@+id/mf_tv_addingNew"
+            app:rv_head="@string/treemap" />
 
         <TextView
             android:id="@+id/mf_tv_searchByKey"
@@ -95,74 +48,26 @@
             android:layout_margin="16dp"
             android:text="@string/search_by_key"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mf_fl_adding_hashMap" />
+            app:layout_constraintTop_toBottomOf="@+id/mf_rv_adding_hashMap" />
 
 
-        <FrameLayout
-            android:id="@+id/mf_fl_searchByKey_hashMap"
+        <com.example.task3.customview.ResultView
+            android:id="@+id/mf_rv_searchByKey_hashMap"
             android:layout_width="120dp"
             android:layout_height="60dp"
-            app:layout_constraintEnd_toStartOf="@+id/mf_fl_searchByKey_treeMap"
+            app:layout_constraintEnd_toStartOf="@+id/mf_rv_searchByKey_treeMap"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mf_tv_searchByKey">
+            app:layout_constraintTop_toBottomOf="@+id/mf_tv_searchByKey"
+            app:rv_head="@string/hashmap" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="@string/hashmap">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/mf_et_searchByKey_hashMap"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:enabled="false"
-                    android:text="@string/space"
-                    tools:ignore="DuplicateSpeakableTextCheck" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.progressindicator.CircularProgressIndicator
-                android:id="@+id/mf_cpi_searchByKey_hashMap"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center|bottom"
-                android:indeterminate="true" />
-
-        </FrameLayout>
-
-        <FrameLayout
-            android:id="@+id/mf_fl_searchByKey_treeMap"
+        <com.example.task3.customview.ResultView
+            android:id="@+id/mf_rv_searchByKey_treeMap"
             android:layout_width="120dp"
             android:layout_height="60dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/mf_fl_searchByKey_hashMap"
-            app:layout_constraintTop_toBottomOf="@+id/mf_tv_searchByKey">
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="@string/treemap">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/mf_et_searchByKey_treeMap"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:enabled="false"
-                    android:text="@string/space"
-                    tools:ignore="DuplicateSpeakableTextCheck" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.progressindicator.CircularProgressIndicator
-                android:id="@+id/mf_cpi_searchByKey_treeMap"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center|bottom"
-                android:indeterminate="true" />
-
-        </FrameLayout>
+            app:layout_constraintStart_toEndOf="@+id/mf_rv_searchByKey_hashMap"
+            app:layout_constraintTop_toBottomOf="@+id/mf_tv_searchByKey"
+            app:rv_head="@string/treemap" />
 
         <TextView
             android:id="@+id/mf_tv_removing"
@@ -171,73 +76,26 @@
             android:layout_margin="16dp"
             android:text="@string/removing"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mf_fl_searchByKey_hashMap" />
+            app:layout_constraintTop_toBottomOf="@+id/mf_rv_searchByKey_hashMap" />
 
-        <FrameLayout
-            android:id="@+id/mf_fl_removing_hashMap"
+        <com.example.task3.customview.ResultView
+            android:id="@+id/mf_rv_removing_hashMap"
             android:layout_width="120dp"
             android:layout_height="60dp"
-            app:layout_constraintEnd_toStartOf="@+id/mf_fl_removing_treeMap"
+            app:layout_constraintEnd_toStartOf="@+id/mf_rv_removing_treeMap"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mf_tv_removing">
+            app:layout_constraintTop_toBottomOf="@+id/mf_tv_removing"
+            app:rv_head="@string/hashmap" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="@string/hashmap">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/mf_et_removing_hashMap"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:enabled="false"
-                    android:text="@string/space"
-                    tools:ignore="DuplicateSpeakableTextCheck" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.progressindicator.CircularProgressIndicator
-                android:id="@+id/mf_cpi_removing_hashMap"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center|bottom"
-                android:indeterminate="true" />
-
-        </FrameLayout>
-
-        <FrameLayout
-            android:id="@+id/mf_fl_removing_treeMap"
+        <com.example.task3.customview.ResultView
+            android:id="@+id/mf_rv_removing_treeMap"
             android:layout_width="120dp"
             android:layout_height="60dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/mf_fl_removing_hashMap"
-            app:layout_constraintTop_toBottomOf="@+id/mf_tv_removing">
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="@string/treemap">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/mf_et_removing_treeMap"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:enabled="false"
-                    android:text="@string/space"
-                    tools:ignore="DuplicateSpeakableTextCheck" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.progressindicator.CircularProgressIndicator
-                android:id="@+id/mf_cpi_removing_treeMap"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center|bottom"
-                android:indeterminate="true" />
-
-        </FrameLayout>
+            app:layout_constraintStart_toEndOf="@+id/mf_rv_removing_hashMap"
+            app:layout_constraintTop_toBottomOf="@+id/mf_tv_removing"
+            app:rv_head="@string/treemap" />
 
         <Button
             android:id="@+id/mf_btn_clear"
@@ -258,17 +116,17 @@
         android:id="@+id/mf_map_size_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
         android:layout_margin="16dp"
         android:text="@string/map_size_desc"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:visibility="visible" />
 
     <FrameLayout
         android:id="@+id/mf_frameLayout"
         android:layout_width="match_parent"
         android:layout_height="450dp"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"

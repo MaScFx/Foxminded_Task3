@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ResultViewComponent">
+        <attr name="rv_head" format="string" />
+        <attr name="rv_result" format="string" />
+    </declare-styleable>
+</resources>

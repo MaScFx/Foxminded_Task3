@@ -24,4 +24,6 @@
     <string name="hashmap">HashMap</string>
     <string name="treemap">TreeMap</string>
     <string name="map_size">Map size</string>
+    <string name="map_fragment">headless_map_fragment</string>
+    <string name="collection_fragment">headless_collection_fragment</string>
 </resources>

@@ -12,19 +12,12 @@ import android.view.ViewGroup;
 
 import com.example.task3.R;
 import com.example.task3.databinding.MapsFragmentBinding;
-import com.example.task3.model.TestMap;
 
-import java.util.HashMap;
 import java.util.Objects;
-import java.util.TreeMap;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class MapsFragment extends Fragment {
     private MapsFragmentBinding binding;
-    private TestMap testHashMap;
-    private TestMap testTreeMap;
-    private ExecutorService executor;
+    private HeadlessMapFragment headlessMapFragment;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -36,10 +29,7 @@ public class MapsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        executor = Executors.newFixedThreadPool(2);
-        binding.mfConstraintLayout.setVisibility(View.GONE);
-        binding.mfFrameLayout.setVisibility(View.VISIBLE);
-        binding.mfMapSizeDesc.setVisibility(View.VISIBLE);
+        initHeadlessFragment();
 
         binding.mfBtnCalculate.setOnClickListener(v -> {
             String size = Objects.requireNonNull(binding.mfEtMapSize.getText()).toString();
@@ -48,10 +38,7 @@ public class MapsFragment extends Fragment {
                 binding.mfFrameLayout.setVisibility(View.GONE);
                 binding.mfMapSizeDesc.setVisibility(View.GONE);
 
-                initTask(Integer.parseInt(binding.mfEtMapSize.getText().toString()));
-
-                executor.execute(testHashMap);
-                executor.execute(testTreeMap);
+                headlessMapFragment.runTasks(Integer.parseInt(binding.mfEtMapSize.getText().toString()));
             }
         });
 
@@ -59,34 +46,35 @@ public class MapsFragment extends Fragment {
             binding.mfConstraintLayout.setVisibility(View.GONE);
             binding.mfFrameLayout.setVisibility(View.VISIBLE);
             binding.mfMapSizeDesc.setVisibility(View.VISIBLE);
-            clearScreen();
         });
 
+        headlessMapFragment.getAddingNewHashMap().observe(getViewLifecycleOwner(), s ->
+                binding.mfRvAddingHashMap.setResult(s));
 
+        headlessMapFragment.getAddingNewTreeMap().observe(getViewLifecycleOwner(), s ->
+                binding.mfRvAddingTreeMap.setResult(s));
+
+        headlessMapFragment.getSearchByKeyHashMap().observe(getViewLifecycleOwner(), s ->
+                binding.mfRvSearchByKeyHashMap.setResult(s));
+
+        headlessMapFragment.getSearchByKeyTreeMap().observe(getViewLifecycleOwner(), s ->
+                binding.mfRvSearchByKeyTreeMap.setResult(s));
+
+        headlessMapFragment.getRemovingHashMap().observe(getViewLifecycleOwner(), s ->
+                binding.mfRvRemovingHashMap.setResult(s));
+
+        headlessMapFragment.getRemovingTreeMap().observe(getViewLifecycleOwner(), s ->
+                binding.mfRvRemovingTreeMap.setResult(s));
     }
 
+    private void initHeadlessFragment() {
+        headlessMapFragment = (HeadlessMapFragment) getFragmentManager()
+                .findFragmentByTag(getString(R.string.map_fragment));
 
-    private void initTask(Integer size) {
-        testHashMap = new TestMap(new HashMap<>(), size, binding);
-        testTreeMap = new TestMap(new TreeMap<>(), size, binding);
+        if (headlessMapFragment == null) {
+            headlessMapFragment = new HeadlessMapFragment();
+            getFragmentManager().beginTransaction()
+                    .add(headlessMapFragment, getString(R.string.map_fragment)).commit();
+        }
     }
-
-
-    private void clearScreen() {
-        binding.mfEtAddingHashMap.setText(R.string.space);
-        binding.mfCpiAddingHashMap.setVisibility(View.VISIBLE);
-        binding.mfEtAddingTreeMap.setText(R.string.space);
-        binding.mfCpiAddingTreeMap.setVisibility(View.VISIBLE);
-
-        binding.mfEtSearchByKeyHashMap.setText(R.string.space);
-        binding.mfCpiSearchByKeyHashMap.setVisibility(View.VISIBLE);
-        binding.mfEtSearchByKeyTreeMap.setText(R.string.space);
-        binding.mfCpiSearchByKeyTreeMap.setVisibility(View.VISIBLE);
-
-        binding.mfEtRemovingHashMap.setText(R.string.space);
-        binding.mfCpiRemovingHashMap.setVisibility(View.VISIBLE);
-        binding.mfEtRemovingTreeMap.setText(R.string.space);
-        binding.mfCpiRemovingTreeMap.setVisibility(View.VISIBLE);
-    }
-
 }

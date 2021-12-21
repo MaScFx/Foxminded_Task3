@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rv_frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_constraintEnd_toStartOf="@+id/cf_fl_addBegin_linkedList"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/cf_tv_addingBeginning">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/rv_head"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:hint="@string/space">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/rv_editText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:enabled="false"
+            android:text="@string/space"
+            tools:ignore="DuplicateSpeakableTextCheck" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/rv_circularProgressIndicator"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center|bottom"
+        android:indeterminate="true" />
+</FrameLayout>
