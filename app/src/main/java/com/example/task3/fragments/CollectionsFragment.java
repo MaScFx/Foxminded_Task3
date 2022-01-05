@@ -1,24 +1,26 @@
 package com.example.task3.fragments;
 
-import android.content.res.Configuration;
+
+import static com.example.task3.model.constants.ListTests.*;
+
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.task3.R;
 import com.example.task3.databinding.CollectionsFragmentBinding;
+import com.example.task3.model.constants.ListTests;
 
+import java.util.HashMap;
 import java.util.Objects;
 
-public class CollectionsFragment extends Fragment {
+public class CollectionsFragment extends RootFragment implements NotifyDataSetChanged {
     private CollectionsFragmentBinding binding;
-    private HeadlessCollectionFragment headlessCollectionFragment;
+    private HashMap<ListTests, String> results;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -30,108 +32,60 @@ public class CollectionsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initHeadlessFragment();
-        observLiveData();
+        headlessTestsFragment.setListDataObserver(this);
+        results = headlessTestsFragment.getListResults();
+        refreshUIData();
 
         binding.cfBtnCalculate.setOnClickListener(v -> {
             String size = Objects.requireNonNull(binding.cfEtCollectionSize.getText()).toString();
-            if (!size.equals("") && Integer.parseInt(size) >= 10) {
-                headlessCollectionFragment.runTasks(Integer.parseInt(size));
-                binding.cfTv.setVisibility(View.GONE);
-                binding.cfFrameLayout.setVisibility(View.GONE);
+            if (!size.equals("") && Integer.parseInt(size) >= 9) {
+                headlessTestsFragment.runListTests(Integer.parseInt(size));
                 binding.cfConstraintLayout.setVisibility(View.VISIBLE);
+                binding.cfFrameLayout.setVisibility(View.GONE);
+                binding.cfTvSizeDesc.setVisibility(View.GONE);
+                refreshUIData();
             }
         });
 
         binding.cfBtnClear.setOnClickListener(v -> {
-            binding.cfTv.setVisibility(View.VISIBLE);
+            binding.cfTvSizeDesc.setVisibility(View.VISIBLE);
             binding.cfFrameLayout.setVisibility(View.VISIBLE);
             binding.cfConstraintLayout.setVisibility(View.GONE);
         });
     }
 
+    private void refreshUIData() {
+        binding.cfRvAddBeginArraylist.setResult(results.get(AddingBeginningAL));
+        binding.cfRvAddBeginLinkedList.setResult(results.get(AddingBeginningLL));
+        binding.cfRvAddBeginCopyOnWrite.setResult(results.get(AddingBeginningCoW));
+
+        binding.cfRvAddMiddleArraylist.setResult(results.get(AddingMiddleAL));
+        binding.cfRvAddMiddleLinkedList.setResult(results.get(AddingMiddleLL));
+        binding.cfRvAddMiddleCopyOnWrite.setResult(results.get(AddingMiddleCoW));
+
+        binding.cfRvAddEndArraylist.setResult(results.get(AddingEndAL));
+        binding.cfRvAddEndLinkedList.setResult(results.get(AddingEndLL));
+        binding.cfRvAddEndCopyOnWrite.setResult(results.get(AddingEndCoW));
+
+        binding.cfRvSearchArraylist.setResult(results.get(SearchAL));
+        binding.cfRvSearchLinkedList.setResult(results.get(SearchLL));
+        binding.cfRvSearchCopyOnWrite.setResult(results.get(SearchCoW));
+
+        binding.cfRvRemovingBeginningArraylist.setResult(results.get(RemovingBeginningAL));
+        binding.cfRvRemovingBeginningLinkedList.setResult(results.get(RemovingBeginningLL));
+        binding.cfRvRemovingBeginningCopyOnWrite.setResult(results.get(RemovingBeginningCoW));
+
+        binding.cfRvRemovingMiddleArraylist.setResult(results.get(RemovingMiddleAL));
+        binding.cfRvRemovingMiddleLinkedList.setResult(results.get(RemovingMiddleLL));
+        binding.cfRvRemovingMiddleCopyOnWrite.setResult(results.get(RemovingMiddleCoW));
+
+        binding.cfRvRemovingEndArraylist.setResult(results.get(RemovingEndAL));
+        binding.cfRvRemovingEndLinkedList.setResult(results.get(RemovingEndLL));
+        binding.cfRvRemovingEndCopyOnWrite.setResult(results.get(RemovingEndCoW));
+    }
+
     @Override
-    public void onConfigurationChanged(@NonNull Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-    }
-
-    private void observLiveData() {
-        headlessCollectionFragment.getAddingBeginningAL().observe(getViewLifecycleOwner(), s ->
-                binding.cfRvAddBeginArraylist.setResult(s));
-
-        headlessCollectionFragment.getAddingBeginningLL().observe(getViewLifecycleOwner(), s ->
-                binding.cfRvAddBeginLinkedList.setResult(s));
-
-        headlessCollectionFragment.getAddingBeginningCoW().observe(getViewLifecycleOwner(), s ->
-                binding.cfRvAddBeginCopyOnWrite.setResult(s));
-
-        headlessCollectionFragment.getAddingMiddleAL().observe(getViewLifecycleOwner(), s ->
-                binding.cfRvAddMiddleArraylist.setResult(s));
-
-        headlessCollectionFragment.getAddingMiddleLL().observe(getViewLifecycleOwner(), s ->
-                binding.cfRvAddMiddleLinkedList.setResult(s));
-
-        headlessCollectionFragment.getAddingMiddleCoW().observe(getViewLifecycleOwner(), s ->
-                binding.cfRvAddMiddleCopyOnWrite.setResult(s));
-
-        headlessCollectionFragment.getAddingEndAL().observe(getViewLifecycleOwner(), s ->
-                binding.cfRvAddEndArraylist.setResult(s));
-
-        headlessCollectionFragment.getAddingEndLL().observe(getViewLifecycleOwner(), s ->
-                binding.cfRvAddEndLinkedList.setResult(s));
-
-        headlessCollectionFragment.getAddingEndCoW().observe(getViewLifecycleOwner(), s ->
-                binding.cfRvAddEndCopyOnWrite.setResult(s));
-
-        headlessCollectionFragment.getAddingEndCoW().observe(getViewLifecycleOwner(), s ->
-                binding.cfRvAddEndCopyOnWrite.setResult(s));
-
-        headlessCollectionFragment.getSearchAL().observe(getViewLifecycleOwner(), s ->
-                binding.cfRvSearchArraylist.setResult(s));
-
-        headlessCollectionFragment.getSearchLL().observe(getViewLifecycleOwner(), s ->
-                binding.cfRvSearchLinkedList.setResult(s));
-
-        headlessCollectionFragment.getSearchCoW().observe(getViewLifecycleOwner(), s ->
-                binding.cfRvSearchCopyOnWrite.setResult(s));
-
-        headlessCollectionFragment.getRemovingBeginningAL().observe(getViewLifecycleOwner(), s ->
-                binding.cfRvRemovingBeginningArraylist.setResult(s));
-
-        headlessCollectionFragment.getRemovingBeginningLL().observe(getViewLifecycleOwner(), s ->
-                binding.cfRvRemovingBeginningLinkedList.setResult(s));
-
-        headlessCollectionFragment.getRemovingBeginningCoW().observe(getViewLifecycleOwner(), s ->
-                binding.cfRvRemovingBeginningCopyOnWrite.setResult(s));
-
-        headlessCollectionFragment.getRemovingMiddleAL().observe(getViewLifecycleOwner(), s ->
-                binding.cfRvRemovingMiddleArraylist.setResult(s));
-
-        headlessCollectionFragment.getRemovingMiddleLL().observe(getViewLifecycleOwner(), s ->
-                binding.cfRvRemovingMiddleLinkedList.setResult(s));
-
-        headlessCollectionFragment.getRemovingMiddleCoW().observe(getViewLifecycleOwner(), s ->
-                binding.cfRvRemovingMiddleCopyOnWrite.setResult(s));
-
-        headlessCollectionFragment.getRemovingEndAL().observe(getViewLifecycleOwner(), s ->
-                binding.cfRvRemovingEndArraylist.setResult(s));
-
-        headlessCollectionFragment.getRemovingEndLL().observe(getViewLifecycleOwner(), s ->
-                binding.cfRvRemovingEndLinkedList.setResult(s));
-
-        headlessCollectionFragment.getRemovingEndCoW().observe(getViewLifecycleOwner(), s ->
-                binding.cfRvRemovingEndCopyOnWrite.setResult(s));
-
-    }
-
-    private void initHeadlessFragment() {
-        headlessCollectionFragment = (HeadlessCollectionFragment) getFragmentManager()
-                .findFragmentByTag(getString(R.string.collection_fragment));
-
-        if (headlessCollectionFragment == null) {
-            headlessCollectionFragment = new HeadlessCollectionFragment();
-            getFragmentManager().beginTransaction()
-                    .add(headlessCollectionFragment, getString(R.string.collection_fragment)).commit();
-        }
+    public void notifyDataSetChanged() {
+        refreshUIData();
     }
 }

@@ -1,23 +1,25 @@
 package com.example.task3.fragments;
 
+import static com.example.task3.model.constants.MapTests.*;
+
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.task3.R;
 import com.example.task3.databinding.MapsFragmentBinding;
+import com.example.task3.model.constants.MapTests;
 
+import java.util.HashMap;
 import java.util.Objects;
 
-public class MapsFragment extends Fragment {
+public class MapsFragment extends RootFragment implements NotifyDataSetChanged {
     private MapsFragmentBinding binding;
-    private HeadlessMapFragment headlessMapFragment;
+    private HashMap<MapTests, String> results;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -29,52 +31,40 @@ public class MapsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initHeadlessFragment();
+        headlessTestsFragment.setMapDataObserver(this);
+        results = headlessTestsFragment.getMapResults();
+        refreshUIData();
 
         binding.mfBtnCalculate.setOnClickListener(v -> {
             String size = Objects.requireNonNull(binding.mfEtMapSize.getText()).toString();
-            if (!size.equals("") && Integer.parseInt(size) > 0) {
+            if (!size.equals("") && Integer.parseInt(size) > 9) {
+                headlessTestsFragment.runMapTests(Integer.parseInt(size));
                 binding.mfConstraintLayout.setVisibility(View.VISIBLE);
                 binding.mfFrameLayout.setVisibility(View.GONE);
-                binding.mfMapSizeDesc.setVisibility(View.GONE);
-
-                headlessMapFragment.runTasks(Integer.parseInt(binding.mfEtMapSize.getText().toString()));
+                binding.mfTvSizeDesc.setVisibility(View.GONE);
+                refreshUIData();
             }
         });
 
         binding.mfBtnClear.setOnClickListener(v -> {
             binding.mfConstraintLayout.setVisibility(View.GONE);
             binding.mfFrameLayout.setVisibility(View.VISIBLE);
-            binding.mfMapSizeDesc.setVisibility(View.VISIBLE);
+            binding.mfTvSizeDesc.setVisibility(View.VISIBLE);
         });
 
-        headlessMapFragment.getAddingNewHashMap().observe(getViewLifecycleOwner(), s ->
-                binding.mfRvAddingHashMap.setResult(s));
-
-        headlessMapFragment.getAddingNewTreeMap().observe(getViewLifecycleOwner(), s ->
-                binding.mfRvAddingTreeMap.setResult(s));
-
-        headlessMapFragment.getSearchByKeyHashMap().observe(getViewLifecycleOwner(), s ->
-                binding.mfRvSearchByKeyHashMap.setResult(s));
-
-        headlessMapFragment.getSearchByKeyTreeMap().observe(getViewLifecycleOwner(), s ->
-                binding.mfRvSearchByKeyTreeMap.setResult(s));
-
-        headlessMapFragment.getRemovingHashMap().observe(getViewLifecycleOwner(), s ->
-                binding.mfRvRemovingHashMap.setResult(s));
-
-        headlessMapFragment.getRemovingTreeMap().observe(getViewLifecycleOwner(), s ->
-                binding.mfRvRemovingTreeMap.setResult(s));
     }
 
-    private void initHeadlessFragment() {
-        headlessMapFragment = (HeadlessMapFragment) getFragmentManager()
-                .findFragmentByTag(getString(R.string.map_fragment));
+    private void refreshUIData() {
+        binding.mfRvAddingHashMap.setResult(results.get(AddingNewHM));
+        binding.mfRvAddingTreeMap.setResult(results.get(AddingNewTM));
+        binding.mfRvSearchByKeyHashMap.setResult(results.get(SearchHM));
+        binding.mfRvSearchByKeyTreeMap.setResult(results.get(SearchTM));
+        binding.mfRvRemovingHashMap.setResult(results.get(RemovingHM));
+        binding.mfRvRemovingTreeMap.setResult(results.get(RemovingTM));
+    }
 
-        if (headlessMapFragment == null) {
-            headlessMapFragment = new HeadlessMapFragment();
-            getFragmentManager().beginTransaction()
-                    .add(headlessMapFragment, getString(R.string.map_fragment)).commit();
-        }
+    @Override
+    public void notifyDataSetChanged() {
+        refreshUIData();
     }
 }

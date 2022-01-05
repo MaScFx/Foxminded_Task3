@@ -113,7 +113,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-        android:id="@+id/mf_map_size_desc"
+        android:id="@+id/mf_tv_size_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
