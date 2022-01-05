@@ -24,6 +24,7 @@ import com.example.task3.model.testsMap.AddingNewMap;
 import com.example.task3.model.testsMap.RemovingMap;
 import com.example.task3.model.testsMap.SearchByKeyMap;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -44,16 +45,8 @@ public class HeadlessTestsFragment extends Fragment {
     private TreeMap<String, Integer> treeMap = new TreeMap<>();
 
     private Handler handler;
-    private NotifyDataSetChanged listDataObserver;
-    private NotifyDataSetChanged mapDataObserver;
-
-    public void setListDataObserver(NotifyDataSetChanged listDataObserver) {
-        this.listDataObserver = listDataObserver;
-    }
-
-    public void setMapDataObserver(NotifyDataSetChanged mapDataObserver) {
-        this.mapDataObserver = mapDataObserver;
-    }
+    private WeakReference<NotifyDataSetChanged> listDataObserver;
+    private WeakReference<NotifyDataSetChanged> mapDataObserver;
 
     private final HashMap<ListTests, String> listResults = new HashMap<>();
     private final HashMap<MapTests, String> mapResults = new HashMap<>();
@@ -64,39 +57,6 @@ public class HeadlessTestsFragment extends Fragment {
         setRetainInstance(true);
         initHandler();
         executor = Executors.newSingleThreadExecutor();
-
-    }
-
-
-    public HashMap<ListTests, String> getListResults() {
-        return listResults;
-    }
-
-    public HashMap<MapTests, String> getMapResults() {
-        return mapResults;
-    }
-
-    public void runListTests(Integer size) {
-        clearListResult();
-        executor.execute(new FillingList(size, handler));
-
-    }
-
-    public void runMapTests(Integer size) {
-        clearMapResult();
-        executor.execute(new FillingMap(size, handler));
-    }
-
-    private void clearListResult() {
-        for (ListTests dir : ListTests.values()) {
-            listResults.put(dir, " ");
-        }
-    }
-
-    private void clearMapResult() {
-        for (MapTests dir : MapTests.values()) {
-            mapResults.put(dir, " ");
-        }
     }
 
     public void fillingListEnd(Map<TypeList, List<Integer>> result) {
@@ -145,16 +105,6 @@ public class HeadlessTestsFragment extends Fragment {
             executor.execute(new SearchByKeyMap(hashMap, TypeMap.HashMap, handler));
             executor.execute(new SearchByKeyMap(treeMap, TypeMap.TreeMap, handler));
         });
-    }
-
-    private void setListResultNewData(ListTests test, String data) {
-        listResults.put(test, data);
-        listDataObserver.notifyDataSetChanged();
-    }
-
-    private void setMapResultNewData(MapTests test, String data) {
-        mapResults.put(test, data);
-        mapDataObserver.notifyDataSetChanged();
     }
 
     @SuppressLint("HandlerLeak")
@@ -223,6 +173,54 @@ public class HeadlessTestsFragment extends Fragment {
 
             }
         };
+    }
+
+    private void setListResultNewData(ListTests test, String data) {
+        listResults.put(test, data);
+        listDataObserver.get().notifyDataSetChanged();
+    }
+
+    private void setMapResultNewData(MapTests test, String data) {
+        mapResults.put(test, data);
+        mapDataObserver.get().notifyDataSetChanged();
+    }
+
+    public void runListTests(Integer size) {
+        clearListResult();
+        executor.execute(new FillingList(size, handler));
+    }
+
+    public void runMapTests(Integer size) {
+        clearMapResult();
+        executor.execute(new FillingMap(size, handler));
+    }
+
+    private void clearListResult() {
+        for (ListTests dir : ListTests.values()) {
+            listResults.put(dir, " ");
+        }
+    }
+
+    private void clearMapResult() {
+        for (MapTests dir : MapTests.values()) {
+            mapResults.put(dir, " ");
+        }
+    }
+
+    public void setListDataObserver(NotifyDataSetChanged listDataObserver) {
+        this.listDataObserver = new WeakReference<>(listDataObserver);
+    }
+
+    public void setMapDataObserver(NotifyDataSetChanged mapDataObserver) {
+        this.mapDataObserver = new WeakReference<>(mapDataObserver);
+    }
+
+    public HashMap<ListTests, String> getListResults() {
+        return listResults;
+    }
+
+    public HashMap<MapTests, String> getMapResults() {
+        return mapResults;
     }
 
 
