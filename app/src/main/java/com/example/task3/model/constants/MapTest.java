@@ -1,6 +1,6 @@
 package com.example.task3.model.constants;
 
-public enum MapTests {
+public enum MapTest {
     AddingNewHM(200),
     AddingNewTM(201),
     SearchHM(202),
@@ -10,7 +10,7 @@ public enum MapTests {
 
     private final int value;
 
-    MapTests(int value) {
+    MapTest(int value) {
         this.value = value;
     }
 

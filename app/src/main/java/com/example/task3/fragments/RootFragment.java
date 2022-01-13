@@ -10,16 +10,16 @@ import androidx.fragment.app.Fragment;
 import com.example.task3.R;
 
 public abstract class RootFragment extends Fragment {
-    protected HeadlessTestsFragment headlessTestsFragment;
+    protected IDataKeeper iDataKeeper;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initHeadlessFragment();
+        initDataKeeper();
     }
 
-    private void initHeadlessFragment() {
-        headlessTestsFragment = (HeadlessTestsFragment) getFragmentManager()
+    private void initDataKeeper() {
+        HeadlessTestsFragment headlessTestsFragment = (HeadlessTestsFragment) getFragmentManager()
                 .findFragmentByTag(getString(R.string.collection_fragment));
 
         if (headlessTestsFragment == null) {
@@ -27,5 +27,6 @@ public abstract class RootFragment extends Fragment {
             getFragmentManager().beginTransaction()
                     .add(headlessTestsFragment, getString(R.string.collection_fragment)).commit();
         }
+        iDataKeeper = headlessTestsFragment;
     }
 }

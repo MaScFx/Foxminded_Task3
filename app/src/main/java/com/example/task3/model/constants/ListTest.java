@@ -1,6 +1,6 @@
 package com.example.task3.model.constants;
 
-public enum ListTests {
+public enum ListTest {
     AddingBeginningAL(100),
     AddingBeginningLL(101),
     AddingBeginningCoW(102),
@@ -26,7 +26,7 @@ public enum ListTests {
 
     private final int value;
 
-    ListTests(int value) {
+    ListTest(int value) {
         this.value = value;
     }
 
