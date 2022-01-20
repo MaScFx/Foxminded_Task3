@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/mf_constraintLayout"
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
@@ -15,7 +15,7 @@
 
 
         <TextView
-            android:id="@+id/mf_tv_addingNew"
+            android:id="@+id/tv_addingNew"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
@@ -24,81 +24,81 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.example.task3.customview.ResultView
-            android:id="@+id/mf_rv_adding_hashMap"
+            android:id="@+id/rv_adding_hashMap"
             android:layout_width="120dp"
             android:layout_height="60dp"
-            app:layout_constraintEnd_toStartOf="@+id/mf_rv_adding_treeMap"
+            app:layout_constraintEnd_toStartOf="@+id/rv_adding_treeMap"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mf_tv_addingNew"
+            app:layout_constraintTop_toBottomOf="@+id/tv_addingNew"
             app:rv_head="@string/hashmap" />
 
         <com.example.task3.customview.ResultView
-            android:id="@+id/mf_rv_adding_treeMap"
+            android:id="@+id/rv_adding_treeMap"
             android:layout_width="120dp"
             android:layout_height="60dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/mf_rv_adding_hashMap"
-            app:layout_constraintTop_toBottomOf="@+id/mf_tv_addingNew"
+            app:layout_constraintStart_toEndOf="@+id/rv_adding_hashMap"
+            app:layout_constraintTop_toBottomOf="@+id/tv_addingNew"
             app:rv_head="@string/treemap" />
 
         <TextView
-            android:id="@+id/mf_tv_searchByKey"
+            android:id="@+id/tv_searchByKey"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:text="@string/search_by_key"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mf_rv_adding_hashMap" />
+            app:layout_constraintTop_toBottomOf="@+id/rv_adding_hashMap" />
 
 
         <com.example.task3.customview.ResultView
-            android:id="@+id/mf_rv_searchByKey_hashMap"
+            android:id="@+id/rv_searchByKey_hashMap"
             android:layout_width="120dp"
             android:layout_height="60dp"
-            app:layout_constraintEnd_toStartOf="@+id/mf_rv_searchByKey_treeMap"
+            app:layout_constraintEnd_toStartOf="@+id/rv_searchByKey_treeMap"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mf_tv_searchByKey"
+            app:layout_constraintTop_toBottomOf="@+id/tv_searchByKey"
             app:rv_head="@string/hashmap" />
 
         <com.example.task3.customview.ResultView
-            android:id="@+id/mf_rv_searchByKey_treeMap"
+            android:id="@+id/rv_searchByKey_treeMap"
             android:layout_width="120dp"
             android:layout_height="60dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/mf_rv_searchByKey_hashMap"
-            app:layout_constraintTop_toBottomOf="@+id/mf_tv_searchByKey"
+            app:layout_constraintStart_toEndOf="@+id/rv_searchByKey_hashMap"
+            app:layout_constraintTop_toBottomOf="@+id/tv_searchByKey"
             app:rv_head="@string/treemap" />
 
         <TextView
-            android:id="@+id/mf_tv_removing"
+            android:id="@+id/tv_removing"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:text="@string/removing"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mf_rv_searchByKey_hashMap" />
+            app:layout_constraintTop_toBottomOf="@+id/rv_searchByKey_hashMap" />
 
         <com.example.task3.customview.ResultView
-            android:id="@+id/mf_rv_removing_hashMap"
+            android:id="@+id/rv_removing_hashMap"
             android:layout_width="120dp"
             android:layout_height="60dp"
-            app:layout_constraintEnd_toStartOf="@+id/mf_rv_removing_treeMap"
+            app:layout_constraintEnd_toStartOf="@+id/rv_removing_treeMap"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mf_tv_removing"
+            app:layout_constraintTop_toBottomOf="@+id/tv_removing"
             app:rv_head="@string/hashmap" />
 
 
         <com.example.task3.customview.ResultView
-            android:id="@+id/mf_rv_removing_treeMap"
+            android:id="@+id/rv_removing_treeMap"
             android:layout_width="120dp"
             android:layout_height="60dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/mf_rv_removing_hashMap"
-            app:layout_constraintTop_toBottomOf="@+id/mf_tv_removing"
+            app:layout_constraintStart_toEndOf="@+id/rv_removing_hashMap"
+            app:layout_constraintTop_toBottomOf="@+id/tv_removing"
             app:rv_head="@string/treemap" />
 
         <Button
-            android:id="@+id/mf_btn_clear"
+            android:id="@+id/btn_clear_map"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -113,7 +113,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-        android:id="@+id/mf_tv_size_desc"
+        android:id="@+id/tv_size_desc_map"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -122,7 +122,7 @@
         android:visibility="visible" />
 
     <FrameLayout
-        android:id="@+id/mf_frameLayout"
+        android:id="@+id/frameLayout_map"
         android:layout_width="match_parent"
         android:layout_height="450dp"
         android:orientation="vertical"
@@ -137,14 +137,14 @@
             android:hint="@string/map_size">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/mf_et_mapSize"
+                android:id="@+id/et_mapSize"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="number" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/mf_btn_calculate"
+            android:id="@+id/btn_calculate_map"
             android:layout_width="match_parent"
             android:layout_height="75dp"
             android:layout_gravity="center|bottom"

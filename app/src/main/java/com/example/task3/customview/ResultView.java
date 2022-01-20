@@ -45,7 +45,6 @@ public class ResultView extends FrameLayout {
     public ResultView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         init(context);
-
     }
 
     private void init(Context context) {

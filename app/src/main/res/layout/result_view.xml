@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     app:layout_constraintEnd_toStartOf="@+id/cf_fl_addBegin_linkedList"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/cf_tv_addingBeginning">
+    app:layout_constraintTop_toBottomOf="@+id/tv_addingBeginning">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/rv_head"

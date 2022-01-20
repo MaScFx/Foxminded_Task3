@@ -1,6 +1,11 @@
 package com.example.task3.fragments;
 
-import static com.example.task3.model.constants.MapTest.*;
+import static com.example.task3.model.constants.Operations.AddingNewHM;
+import static com.example.task3.model.constants.Operations.AddingNewTM;
+import static com.example.task3.model.constants.Operations.RemovingHM;
+import static com.example.task3.model.constants.Operations.RemovingTM;
+import static com.example.task3.model.constants.Operations.SearchHM;
+import static com.example.task3.model.constants.Operations.SearchTM;
 
 import android.os.Bundle;
 
@@ -14,20 +19,25 @@ import android.view.ViewGroup;
 import com.example.task3.R;
 import com.example.task3.customview.ResultView;
 import com.example.task3.databinding.MapsFragmentBinding;
-import com.example.task3.model.constants.TypeMap;
-import com.example.task3.model.tests.iTest;
-import com.example.task3.model.tests.testsMap.AddingNewMap;
-import com.example.task3.model.tests.testsMap.RemovingMap;
-import com.example.task3.model.tests.testsMap.SearchByKeyMap;
+import com.example.task3.model.constants.Operations;
+import com.example.task3.model.operations.IOperation;
+import com.example.task3.model.operations.fillingCollections.FillingMap;
+import com.example.task3.model.operations.testsMap.AddingNewHashMap;
+import com.example.task3.model.operations.testsMap.AddingNewTreeMap;
+import com.example.task3.model.operations.testsMap.RemovingHashMap;
+import com.example.task3.model.operations.testsMap.RemovingTreeMap;
+import com.example.task3.model.operations.testsMap.SearchByKeyHashMap;
+import com.example.task3.model.operations.testsMap.SearchByKeyTreeMap;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
-public class MapsFragment extends RootFragment implements ICollectionObserver {
+public class MapsFragment extends RootFragment implements IResultObserver {
     private MapsFragmentBinding binding;
     private final HashMap<Integer, ResultView> views = new HashMap<>();
+    private Boolean check = false;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -41,22 +51,27 @@ public class MapsFragment extends RootFragment implements ICollectionObserver {
         super.onViewCreated(view, savedInstanceState);
         viewsInit();
         clearUIData();
+        checkPreviousData();
 
-        binding.mfBtnCalculate.setOnClickListener(v -> {
-            String size = Objects.requireNonNull(binding.mfEtMapSize.getText()).toString();
+        binding.btnCalculateMap.setOnClickListener(v -> {
+            String size = Objects.requireNonNull(binding.etMapSize.getText()).toString();
             if (!size.equals("") && Integer.parseInt(size) > 9) {
-                iDataKeeper.fillingMap(Integer.parseInt(size), this);
-                binding.mfConstraintLayout.setVisibility(View.VISIBLE);
-                binding.mfFrameLayout.setVisibility(View.GONE);
-                binding.mfTvSizeDesc.setVisibility(View.GONE);
+
+                List<IOperation> fillingMap = new ArrayList<>();
+                fillingMap.add(new FillingMap(Integer.parseInt(size)));
+                iDataKeeper.runOperation(fillingMap, this);
+
+                binding.constraintLayout.setVisibility(View.VISIBLE);
+                binding.frameLayoutMap.setVisibility(View.GONE);
+                binding.tvSizeDescMap.setVisibility(View.GONE);
                 clearUIData();
             }
         });
 
-        binding.mfBtnClear.setOnClickListener(v -> {
-            binding.mfConstraintLayout.setVisibility(View.GONE);
-            binding.mfFrameLayout.setVisibility(View.VISIBLE);
-            binding.mfTvSizeDesc.setVisibility(View.VISIBLE);
+        binding.btnClearMap.setOnClickListener(v -> {
+            binding.constraintLayout.setVisibility(View.GONE);
+            binding.frameLayoutMap.setVisibility(View.VISIBLE);
+            binding.tvSizeDescMap.setVisibility(View.VISIBLE);
         });
     }
 
@@ -66,30 +81,51 @@ public class MapsFragment extends RootFragment implements ICollectionObserver {
         }
     }
 
-    @Override
-    public void collectionIsCompleted() {
-        List<iTest> tests = new ArrayList<>();
-        tests.add(new AddingNewMap(HeadlessTestsFragment.hashMap, TypeMap.HashMap));
-        tests.add(new AddingNewMap(HeadlessTestsFragment.treeMap, TypeMap.TreeMap));
-        tests.add(new RemovingMap(HeadlessTestsFragment.hashMap, TypeMap.HashMap));
-        tests.add(new RemovingMap(HeadlessTestsFragment.treeMap, TypeMap.TreeMap));
-        tests.add(new SearchByKeyMap(HeadlessTestsFragment.hashMap, TypeMap.HashMap));
-        tests.add(new SearchByKeyMap(HeadlessTestsFragment.treeMap, TypeMap.TreeMap));
+    private void checkPreviousData() {
+        HashMap<Integer, String> data = iDataKeeper.getResults();
+        String currentData;
+        for (Integer i : views.keySet()) {
+            currentData = data.get(i);
+            if (currentData != null && !Objects.equals(currentData, getString(R.string.space))) {
+                if (!check) {
+                    binding.constraintLayout.setVisibility(View.VISIBLE);
+                    binding.frameLayoutMap.setVisibility(View.GONE);
+                    binding.tvSizeDescMap.setVisibility(View.GONE);
+                    check = true;
+                }
+                ResultView resultView = views.get(i);
+                resultView.setResult(currentData);
+            }
+        }
+    }
 
-        iDataKeeper.runTests(tests);
+    public void createTests() {
+        List<IOperation> tests = new ArrayList<>();
+        tests.add(new AddingNewHashMap(HeadlessTestsFragment.hashMap));
+        tests.add(new AddingNewTreeMap(HeadlessTestsFragment.treeMap));
+        tests.add(new RemovingHashMap(HeadlessTestsFragment.hashMap));
+        tests.add(new RemovingTreeMap(HeadlessTestsFragment.treeMap));
+        tests.add(new SearchByKeyHashMap(HeadlessTestsFragment.hashMap));
+        tests.add(new SearchByKeyTreeMap(HeadlessTestsFragment.treeMap));
+
+        iDataKeeper.runOperation(tests, this);
     }
 
     @Override
     public void dataSetChanged(Integer testID, String result) {
-        views.get(testID).setResult(result);
+        if (testID == Operations.FillingMapCompleted.ordinal()) {
+            createTests();
+        } else {
+            views.get(testID).setResult(result);
+        }
     }
 
     private void viewsInit() {
-        views.put(AddingNewHM.getValue(), binding.mfRvAddingHashMap);
-        views.put(AddingNewTM.getValue(), binding.mfRvAddingTreeMap);
-        views.put(SearchHM.getValue(), binding.mfRvSearchByKeyHashMap);
-        views.put(SearchTM.getValue(), binding.mfRvSearchByKeyTreeMap);
-        views.put(RemovingHM.getValue(), binding.mfRvRemovingHashMap);
-        views.put(RemovingTM.getValue(), binding.mfRvRemovingTreeMap);
+        views.put(AddingNewHM.ordinal(), binding.rvAddingHashMap);
+        views.put(AddingNewTM.ordinal(), binding.rvAddingTreeMap);
+        views.put(SearchHM.ordinal(), binding.rvSearchByKeyHashMap);
+        views.put(SearchTM.ordinal(), binding.rvSearchByKeyTreeMap);
+        views.put(RemovingHM.ordinal(), binding.rvRemovingHashMap);
+        views.put(RemovingTM.ordinal(), binding.rvRemovingTreeMap);
     }
 }

@@ -1,7 +1,8 @@
 package com.example.task3.fragments;
 
 
-import static com.example.task3.model.constants.ListTest.*;
+import static com.example.task3.model.constants.Operations.*;
+
 
 import android.os.Bundle;
 
@@ -15,24 +16,40 @@ import android.view.ViewGroup;
 import com.example.task3.R;
 import com.example.task3.customview.ResultView;
 import com.example.task3.databinding.CollectionsFragmentBinding;
-import com.example.task3.model.constants.TypeList;
-import com.example.task3.model.tests.iTest;
-import com.example.task3.model.tests.testsCollection.AddingBeginningList;
-import com.example.task3.model.tests.testsCollection.AddingEndList;
-import com.example.task3.model.tests.testsCollection.AddingMiddleList;
-import com.example.task3.model.tests.testsCollection.RemovingBeginningList;
-import com.example.task3.model.tests.testsCollection.RemovingEndList;
-import com.example.task3.model.tests.testsCollection.RemovingMiddleList;
-import com.example.task3.model.tests.testsCollection.SearchList;
+import com.example.task3.model.constants.Operations;
+import com.example.task3.model.operations.IOperation;
+import com.example.task3.model.operations.fillingCollections.FillingList;
+import com.example.task3.model.operations.testsCollection.AddingBeginningAL;
+import com.example.task3.model.operations.testsCollection.AddingBeginningCoW;
+import com.example.task3.model.operations.testsCollection.AddingBeginningLL;
+import com.example.task3.model.operations.testsCollection.AddingEndAL;
+import com.example.task3.model.operations.testsCollection.AddingEndCoW;
+import com.example.task3.model.operations.testsCollection.AddingEndLL;
+import com.example.task3.model.operations.testsCollection.AddingMiddleAL;
+import com.example.task3.model.operations.testsCollection.AddingMiddleCoW;
+import com.example.task3.model.operations.testsCollection.AddingMiddleLL;
+import com.example.task3.model.operations.testsCollection.RemovingBeginningAL;
+import com.example.task3.model.operations.testsCollection.RemovingBeginningCoW;
+import com.example.task3.model.operations.testsCollection.RemovingBeginningLL;
+import com.example.task3.model.operations.testsCollection.RemovingEndAL;
+import com.example.task3.model.operations.testsCollection.RemovingEndCoW;
+import com.example.task3.model.operations.testsCollection.RemovingEndLL;
+import com.example.task3.model.operations.testsCollection.RemovingMiddleAL;
+import com.example.task3.model.operations.testsCollection.RemovingMiddleCoW;
+import com.example.task3.model.operations.testsCollection.RemovingMiddleLL;
+import com.example.task3.model.operations.testsCollection.SearchAL;
+import com.example.task3.model.operations.testsCollection.SearchCoW;
+import com.example.task3.model.operations.testsCollection.SearchLL;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
-public class CollectionsFragment extends RootFragment implements ICollectionObserver {
+public class CollectionsFragment extends RootFragment implements IResultObserver {
     private CollectionsFragmentBinding binding;
     private final HashMap<Integer, ResultView> views = new HashMap<>();
+    private Boolean check = false;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -46,24 +63,48 @@ public class CollectionsFragment extends RootFragment implements ICollectionObse
         super.onViewCreated(view, savedInstanceState);
         viewsInit();
         clearUIData();
+        checkPreviousData();
 
-        binding.cfBtnCalculate.setOnClickListener(v -> {
-            String size = Objects.requireNonNull(binding.cfEtCollectionSize.getText()).toString();
+        binding.btnCalculateList.setOnClickListener(v -> {
+            String size = Objects.requireNonNull(binding.etCollectionSize.getText()).toString();
             if (!size.equals("") && Integer.parseInt(size) >= 9) {
-                iDataKeeper.fillingList(Integer.parseInt(size), this);
+                List<IOperation> fillingList = new ArrayList<>();
+                fillingList.add(new FillingList(Integer.parseInt(size)));
+                iDataKeeper.runOperation(fillingList, this);
+
                 binding.cfConstraintLayout.setVisibility(View.VISIBLE);
-                binding.cfFrameLayout.setVisibility(View.GONE);
-                binding.cfTvSizeDesc.setVisibility(View.GONE);
+                binding.frameLayoutList.setVisibility(View.GONE);
+                binding.tvSizeDescList.setVisibility(View.GONE);
+
                 clearUIData();
             }
         });
 
-        binding.cfBtnClear.setOnClickListener(v -> {
-            binding.cfTvSizeDesc.setVisibility(View.VISIBLE);
-            binding.cfFrameLayout.setVisibility(View.VISIBLE);
+        binding.btnClearList.setOnClickListener(v -> {
+            binding.tvSizeDescList.setVisibility(View.VISIBLE);
+            binding.frameLayoutList.setVisibility(View.VISIBLE);
             binding.cfConstraintLayout.setVisibility(View.GONE);
         });
     }
+
+    private void checkPreviousData() {
+        HashMap<Integer, String> data = iDataKeeper.getResults();
+        String currentData;
+        for (Integer i : views.keySet()) {
+            currentData = data.get(i);
+            if (currentData != null && !Objects.equals(currentData, getString(R.string.space))) {
+                if (!check) {
+                    binding.cfConstraintLayout.setVisibility(View.VISIBLE);
+                    binding.frameLayoutList.setVisibility(View.GONE);
+                    binding.tvSizeDescList.setVisibility(View.GONE);
+                    check = true;
+                }
+                ResultView resultView = views.get(i);
+                resultView.setResult(currentData);
+            }
+        }
+    }
+
 
     private void clearUIData() {
         for (ResultView view : views.values()) {
@@ -71,66 +112,69 @@ public class CollectionsFragment extends RootFragment implements ICollectionObse
         }
     }
 
-    @Override
-    public void collectionIsCompleted() {
-        List<iTest> tests = new ArrayList<>();
-        tests.add(new AddingBeginningList(HeadlessTestsFragment.arrayList, TypeList.ArrayList));
-        tests.add(new AddingBeginningList(HeadlessTestsFragment.linkedList, TypeList.LinkedList));
-        tests.add(new AddingBeginningList(HeadlessTestsFragment.arrayList, TypeList.CopyOnWrite));
+    public void createTests() {
+        List<IOperation> tests = new ArrayList<>();
+        tests.add(new AddingBeginningAL(HeadlessTestsFragment.arrayList));
+        tests.add(new AddingBeginningLL(HeadlessTestsFragment.linkedList));
+        tests.add(new AddingBeginningCoW(HeadlessTestsFragment.arrayList));
 
-        tests.add(new AddingMiddleList(HeadlessTestsFragment.arrayList, TypeList.ArrayList));
-        tests.add(new AddingMiddleList(HeadlessTestsFragment.linkedList, TypeList.LinkedList));
-        tests.add(new AddingMiddleList(HeadlessTestsFragment.arrayList, TypeList.CopyOnWrite));
+        tests.add(new AddingMiddleAL(HeadlessTestsFragment.arrayList));
+        tests.add(new AddingMiddleLL(HeadlessTestsFragment.linkedList));
+        tests.add(new AddingMiddleCoW(HeadlessTestsFragment.arrayList));
 
-        tests.add(new AddingEndList(HeadlessTestsFragment.arrayList, TypeList.ArrayList));
-        tests.add(new AddingEndList(HeadlessTestsFragment.linkedList, TypeList.LinkedList));
-        tests.add(new AddingEndList(HeadlessTestsFragment.arrayList, TypeList.CopyOnWrite));
+        tests.add(new AddingEndAL(HeadlessTestsFragment.arrayList));
+        tests.add(new AddingEndLL(HeadlessTestsFragment.linkedList));
+        tests.add(new AddingEndCoW(HeadlessTestsFragment.arrayList));
 
-        tests.add(new SearchList(HeadlessTestsFragment.arrayList, TypeList.ArrayList));
-        tests.add(new SearchList(HeadlessTestsFragment.linkedList, TypeList.LinkedList));
-        tests.add(new SearchList(HeadlessTestsFragment.arrayList, TypeList.CopyOnWrite));
+        tests.add(new SearchAL(HeadlessTestsFragment.arrayList));
+        tests.add(new SearchLL(HeadlessTestsFragment.linkedList));
+        tests.add(new SearchCoW(HeadlessTestsFragment.arrayList));
 
-        tests.add(new RemovingBeginningList(HeadlessTestsFragment.arrayList, TypeList.ArrayList));
-        tests.add(new RemovingBeginningList(HeadlessTestsFragment.linkedList, TypeList.LinkedList));
-        tests.add(new RemovingBeginningList(HeadlessTestsFragment.arrayList, TypeList.CopyOnWrite));
+        tests.add(new RemovingBeginningAL(HeadlessTestsFragment.arrayList));
+        tests.add(new RemovingBeginningLL(HeadlessTestsFragment.linkedList));
+        tests.add(new RemovingBeginningCoW(HeadlessTestsFragment.arrayList));
 
-        tests.add(new RemovingMiddleList(HeadlessTestsFragment.arrayList, TypeList.ArrayList));
-        tests.add(new RemovingMiddleList(HeadlessTestsFragment.linkedList, TypeList.LinkedList));
-        tests.add(new RemovingMiddleList(HeadlessTestsFragment.arrayList, TypeList.CopyOnWrite));
+        tests.add(new RemovingMiddleAL(HeadlessTestsFragment.arrayList));
+        tests.add(new RemovingMiddleLL(HeadlessTestsFragment.linkedList));
+        tests.add(new RemovingMiddleCoW(HeadlessTestsFragment.arrayList));
 
-        tests.add(new RemovingEndList(HeadlessTestsFragment.arrayList, TypeList.ArrayList));
-        tests.add(new RemovingEndList(HeadlessTestsFragment.linkedList, TypeList.LinkedList));
-        tests.add(new RemovingEndList(HeadlessTestsFragment.arrayList, TypeList.CopyOnWrite));
+        tests.add(new RemovingEndAL(HeadlessTestsFragment.arrayList));
+        tests.add(new RemovingEndLL(HeadlessTestsFragment.linkedList));
+        tests.add(new RemovingEndCoW(HeadlessTestsFragment.arrayList));
 
-        iDataKeeper.runTests(tests);
+        iDataKeeper.runOperation(tests, this);
     }
 
     @Override
     public void dataSetChanged(Integer testID, String result) {
-        views.get(testID).setResult(result);
+        if (testID == Operations.FillingListCompleted.ordinal()) {
+            createTests();
+        } else {
+            views.get(testID).setResult(result);
+        }
     }
 
     private void viewsInit() {
-        views.put(AddingBeginningAL.getValue(), binding.cfRvAddBeginArraylist);
-        views.put(AddingBeginningLL.getValue(), binding.cfRvAddBeginLinkedList);
-        views.put(AddingBeginningCoW.getValue(), binding.cfRvAddBeginCopyOnWrite);
-        views.put(AddingMiddleAL.getValue(), binding.cfRvAddMiddleArraylist);
-        views.put(AddingMiddleLL.getValue(), binding.cfRvAddMiddleLinkedList);
-        views.put(AddingMiddleCoW.getValue(), binding.cfRvAddMiddleCopyOnWrite);
-        views.put(AddingEndAL.getValue(), binding.cfRvAddEndArraylist);
-        views.put(AddingEndLL.getValue(), binding.cfRvAddEndLinkedList);
-        views.put(AddingEndCoW.getValue(), binding.cfRvAddEndCopyOnWrite);
-        views.put(SearchAL.getValue(), binding.cfRvSearchArraylist);
-        views.put(SearchLL.getValue(), binding.cfRvSearchLinkedList);
-        views.put(SearchCoW.getValue(), binding.cfRvSearchCopyOnWrite);
-        views.put(RemovingBeginningAL.getValue(), binding.cfRvRemovingBeginningArraylist);
-        views.put(RemovingBeginningLL.getValue(), binding.cfRvRemovingBeginningLinkedList);
-        views.put(RemovingBeginningCoW.getValue(), binding.cfRvRemovingBeginningCopyOnWrite);
-        views.put(RemovingMiddleAL.getValue(), binding.cfRvRemovingMiddleArraylist);
-        views.put(RemovingMiddleLL.getValue(), binding.cfRvRemovingMiddleLinkedList);
-        views.put(RemovingMiddleCoW.getValue(), binding.cfRvRemovingMiddleCopyOnWrite);
-        views.put(RemovingEndAL.getValue(), binding.cfRvRemovingEndArraylist);
-        views.put(RemovingEndLL.getValue(), binding.cfRvRemovingEndLinkedList);
-        views.put(RemovingEndCoW.getValue(), binding.cfRvRemovingEndCopyOnWrite);
+        views.put(AddingBeginningAL.ordinal(), binding.rvAddBeginArraylist);
+        views.put(AddingBeginningLL.ordinal(), binding.rvAddBeginLinkedList);
+        views.put(AddingBeginningCoW.ordinal(), binding.rvAddBeginCopyOnWrite);
+        views.put(AddingMiddleAL.ordinal(), binding.rvAddMiddleArraylist);
+        views.put(AddingMiddleLL.ordinal(), binding.rvAddMiddleLinkedList);
+        views.put(AddingMiddleCoW.ordinal(), binding.rvAddMiddleCopyOnWrite);
+        views.put(AddingEndAL.ordinal(), binding.rvAddEndArraylist);
+        views.put(AddingEndLL.ordinal(), binding.rvAddEndLinkedList);
+        views.put(AddingEndCoW.ordinal(), binding.rvAddEndCopyOnWrite);
+        views.put(SearchAL.ordinal(), binding.rvSearchArraylist);
+        views.put(SearchLL.ordinal(), binding.rvSearchLinkedList);
+        views.put(SearchCoW.ordinal(), binding.rvSearchCopyOnWrite);
+        views.put(RemovingBeginningAL.ordinal(), binding.rvRemovingBeginningArraylist);
+        views.put(RemovingBeginningLL.ordinal(), binding.rvRemovingBeginningLinkedList);
+        views.put(RemovingBeginningCoW.ordinal(), binding.rvRemovingBeginningCopyOnWrite);
+        views.put(RemovingMiddleAL.ordinal(), binding.rvRemovingMiddleArraylist);
+        views.put(RemovingMiddleLL.ordinal(), binding.rvRemovingMiddleLinkedList);
+        views.put(RemovingMiddleCoW.ordinal(), binding.rvRemovingMiddleCopyOnWrite);
+        views.put(RemovingEndAL.ordinal(), binding.rvRemovingEndArraylist);
+        views.put(RemovingEndLL.ordinal(), binding.rvRemovingEndLinkedList);
+        views.put(RemovingEndCoW.ordinal(), binding.rvRemovingEndCopyOnWrite);
     }
 }

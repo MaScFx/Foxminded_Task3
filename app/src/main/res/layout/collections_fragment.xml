@@ -20,7 +20,7 @@
 
 
             <TextView
-                android:id="@+id/cf_tv_addingBeginning"
+                android:id="@+id/tv_addingBeginning"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
@@ -29,275 +29,277 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.example.task3.customview.ResultView
-                android:id="@+id/cf_rv_addBegin_arraylist"
+                android:id="@+id/rv_addBegin_arraylist"
                 android:layout_width="120dp"
                 android:layout_height="60dp"
-                app:layout_constraintEnd_toStartOf="@+id/cf_rv_addBegin_linkedList"
+                app:layout_constraintEnd_toStartOf="@+id/rv_addBegin_linkedList"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cf_tv_addingBeginning"
+                app:layout_constraintTop_toBottomOf="@+id/tv_addingBeginning"
                 app:rv_head="ArrayList" />
 
             <com.example.task3.customview.ResultView
-                android:id="@+id/cf_rv_addBegin_linkedList"
+                android:id="@+id/rv_addBegin_linkedList"
                 android:layout_width="120dp"
                 android:layout_height="60dp"
-                app:layout_constraintEnd_toStartOf="@+id/cf_rv_addBegin_CopyOnWrite"
-                app:layout_constraintStart_toEndOf="@id/cf_rv_addBegin_arraylist"
-                app:layout_constraintTop_toBottomOf="@+id/cf_tv_addingBeginning"
+                app:layout_constraintEnd_toStartOf="@+id/rv_addBegin_CopyOnWrite"
+                app:layout_constraintStart_toEndOf="@id/rv_addBegin_arraylist"
+                app:layout_constraintTop_toBottomOf="@+id/tv_addingBeginning"
                 app:rv_head="LinkedList" />
 
             <com.example.task3.customview.ResultView
-                android:id="@+id/cf_rv_addBegin_CopyOnWrite"
+                android:id="@+id/rv_addBegin_CopyOnWrite"
                 android:layout_width="120dp"
                 android:layout_height="60dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/cf_rv_addBegin_linkedList"
-                app:layout_constraintTop_toBottomOf="@+id/cf_tv_addingBeginning"
+                app:layout_constraintStart_toEndOf="@id/rv_addBegin_linkedList"
+                app:layout_constraintTop_toBottomOf="@+id/tv_addingBeginning"
                 app:rv_head="CopyOnWrite" />
 
             <TextView
-                android:id="@+id/cf_tv_addingMiddle"
+                android:id="@+id/tv_addingMiddle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:text="@string/adding_in_the_middle"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cf_rv_addBegin_arraylist" />
+                app:layout_constraintTop_toBottomOf="@+id/rv_addBegin_arraylist" />
 
             <com.example.task3.customview.ResultView
-                android:id="@+id/cf_rv_addMiddle_arraylist"
+                android:id="@+id/rv_addMiddle_arraylist"
                 android:layout_width="120dp"
                 android:layout_height="60dp"
-                app:layout_constraintEnd_toStartOf="@+id/cf_rv_addBegin_linkedList"
+                app:layout_constraintEnd_toStartOf="@+id/rv_addBegin_linkedList"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cf_tv_addingMiddle"
+                app:layout_constraintTop_toBottomOf="@+id/tv_addingMiddle"
                 app:rv_head="ArrayList" />
 
             <com.example.task3.customview.ResultView
-                android:id="@+id/cf_rv_addMiddle_linkedList"
+                android:id="@+id/rv_addMiddle_linkedList"
                 android:layout_width="120dp"
                 android:layout_height="60dp"
-                app:layout_constraintEnd_toStartOf="@+id/cf_rv_addBegin_CopyOnWrite"
-                app:layout_constraintStart_toEndOf="@id/cf_rv_addMiddle_arraylist"
-                app:layout_constraintTop_toBottomOf="@+id/cf_tv_addingMiddle"
+                app:layout_constraintEnd_toStartOf="@+id/rv_addBegin_CopyOnWrite"
+                app:layout_constraintStart_toEndOf="@id/rv_addMiddle_arraylist"
+                app:layout_constraintTop_toBottomOf="@+id/tv_addingMiddle"
                 app:rv_head="LinkedList" />
 
             <com.example.task3.customview.ResultView
-                android:id="@+id/cf_rv_addMiddle_CopyOnWrite"
+                android:id="@+id/rv_addMiddle_CopyOnWrite"
                 android:layout_width="120dp"
                 android:layout_height="60dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/cf_rv_addBegin_linkedList"
-                app:layout_constraintTop_toBottomOf="@+id/cf_tv_addingMiddle"
+                app:layout_constraintStart_toEndOf="@id/rv_addBegin_linkedList"
+                app:layout_constraintTop_toBottomOf="@+id/tv_addingMiddle"
                 app:rv_head="CopyOnWrite" />
 
 
             <TextView
-                android:id="@+id/cf_tv_addingEnd"
+                android:id="@+id/tv_addingEnd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:text="@string/adding_in_the_end"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cf_rv_addMiddle_arraylist" />
+                app:layout_constraintTop_toBottomOf="@+id/rv_addMiddle_arraylist" />
 
             <com.example.task3.customview.ResultView
-                android:id="@+id/cf_rv_addEnd_arraylist"
+                android:id="@+id/rv_addEnd_arraylist"
                 android:layout_width="120dp"
                 android:layout_height="60dp"
-                app:layout_constraintEnd_toStartOf="@+id/cf_rv_addBegin_linkedList"
+                app:layout_constraintEnd_toStartOf="@+id/rv_addBegin_linkedList"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cf_tv_addingEnd"
+                app:layout_constraintTop_toBottomOf="@+id/tv_addingEnd"
                 app:rv_head="ArrayList" />
 
             <com.example.task3.customview.ResultView
-                android:id="@+id/cf_rv_addEnd_linkedList"
+                android:id="@+id/rv_addEnd_linkedList"
                 android:layout_width="120dp"
                 android:layout_height="60dp"
-                app:layout_constraintEnd_toStartOf="@+id/cf_rv_addBegin_CopyOnWrite"
-                app:layout_constraintStart_toEndOf="@id/cf_rv_addMiddle_arraylist"
-                app:layout_constraintTop_toBottomOf="@+id/cf_tv_addingEnd"
+                app:layout_constraintEnd_toStartOf="@+id/rv_addBegin_CopyOnWrite"
+                app:layout_constraintStart_toEndOf="@id/rv_addMiddle_arraylist"
+                app:layout_constraintTop_toBottomOf="@+id/tv_addingEnd"
                 app:rv_head="LinkedList" />
 
             <com.example.task3.customview.ResultView
-                android:id="@+id/cf_rv_addEnd_CopyOnWrite"
+                android:id="@+id/rv_addEnd_CopyOnWrite"
                 android:layout_width="120dp"
                 android:layout_height="60dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/cf_rv_addBegin_linkedList"
-                app:layout_constraintTop_toBottomOf="@+id/cf_tv_addingEnd"
+                app:layout_constraintStart_toEndOf="@id/rv_addBegin_linkedList"
+                app:layout_constraintTop_toBottomOf="@+id/tv_addingEnd"
                 app:rv_head="CopyOnWrite" />
 
 
             <TextView
-                android:id="@+id/cf_tv_SearchByValue"
+                android:id="@+id/tv_SearchByValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:text="@string/search_by_value"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cf_rv_addEnd_arraylist" />
+                app:layout_constraintTop_toBottomOf="@+id/rv_addEnd_arraylist" />
 
             <com.example.task3.customview.ResultView
-                android:id="@+id/cf_rv_search_arraylist"
+                android:id="@+id/rv_search_arraylist"
                 android:layout_width="120dp"
                 android:layout_height="60dp"
-                app:layout_constraintEnd_toStartOf="@+id/cf_rv_addBegin_linkedList"
+                app:layout_constraintEnd_toStartOf="@+id/rv_addBegin_linkedList"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cf_tv_SearchByValue"
+                app:layout_constraintTop_toBottomOf="@+id/tv_SearchByValue"
                 app:rv_head="ArrayList" />
 
             <com.example.task3.customview.ResultView
-                android:id="@+id/cf_rv_search_linkedList"
+                android:id="@+id/rv_search_linkedList"
                 android:layout_width="120dp"
                 android:layout_height="60dp"
-                app:layout_constraintEnd_toStartOf="@+id/cf_rv_addBegin_CopyOnWrite"
-                app:layout_constraintStart_toEndOf="@id/cf_rv_addMiddle_arraylist"
-                app:layout_constraintTop_toBottomOf="@+id/cf_tv_SearchByValue"
+                app:layout_constraintEnd_toStartOf="@+id/rv_addBegin_CopyOnWrite"
+                app:layout_constraintStart_toEndOf="@id/rv_addMiddle_arraylist"
+                app:layout_constraintTop_toBottomOf="@+id/tv_SearchByValue"
                 app:rv_head="LinkedList" />
 
             <com.example.task3.customview.ResultView
-                android:id="@+id/cf_rv_search_CopyOnWrite"
+                android:id="@+id/rv_search_CopyOnWrite"
                 android:layout_width="120dp"
                 android:layout_height="60dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/cf_rv_addBegin_linkedList"
-                app:layout_constraintTop_toBottomOf="@+id/cf_tv_SearchByValue"
+                app:layout_constraintStart_toEndOf="@id/rv_addBegin_linkedList"
+                app:layout_constraintTop_toBottomOf="@+id/tv_SearchByValue"
                 app:rv_head="CopyOnWrite" />
 
             <TextView
-                android:id="@+id/cf_tv_removing_beginning"
+                android:id="@+id/tv_removing_beginning"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:text="@string/removing_in_the_beginning"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cf_rv_search_arraylist" />
+                app:layout_constraintTop_toBottomOf="@+id/rv_search_arraylist" />
 
             <com.example.task3.customview.ResultView
-                android:id="@+id/cf_rv_removing_beginning_arraylist"
+                android:id="@+id/rv_removing_beginning_arraylist"
                 android:layout_width="120dp"
                 android:layout_height="60dp"
-                app:layout_constraintEnd_toStartOf="@+id/cf_rv_addBegin_linkedList"
+                app:layout_constraintEnd_toStartOf="@+id/rv_addBegin_linkedList"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cf_tv_removing_beginning"
+                app:layout_constraintTop_toBottomOf="@+id/tv_removing_beginning"
                 app:rv_head="ArrayList" />
 
             <com.example.task3.customview.ResultView
-                android:id="@+id/cf_rv_removing_beginning_linkedList"
+                android:id="@+id/rv_removing_beginning_linkedList"
                 android:layout_width="120dp"
                 android:layout_height="60dp"
-                app:layout_constraintEnd_toStartOf="@+id/cf_rv_addBegin_CopyOnWrite"
-                app:layout_constraintStart_toEndOf="@id/cf_rv_addMiddle_arraylist"
-                app:layout_constraintTop_toBottomOf="@+id/cf_tv_removing_beginning"
+                app:layout_constraintEnd_toStartOf="@+id/rv_addBegin_CopyOnWrite"
+                app:layout_constraintStart_toEndOf="@id/rv_addMiddle_arraylist"
+                app:layout_constraintTop_toBottomOf="@+id/tv_removing_beginning"
                 app:rv_head="LinkedList" />
 
             <com.example.task3.customview.ResultView
-                android:id="@+id/cf_rv_removing_beginning_CopyOnWrite"
+                android:id="@+id/rv_removing_beginning_CopyOnWrite"
                 android:layout_width="120dp"
                 android:layout_height="60dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/cf_rv_addBegin_linkedList"
-                app:layout_constraintTop_toBottomOf="@+id/cf_tv_removing_beginning"
+                app:layout_constraintStart_toEndOf="@id/rv_addBegin_linkedList"
+                app:layout_constraintTop_toBottomOf="@+id/tv_removing_beginning"
                 app:rv_head="CopyOnWrite" />
 
             <TextView
-                android:id="@+id/cf_tv_removing_middle"
+                android:id="@+id/tv_removing_middle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:text="@string/removing_in_the_middle"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cf_rv_removing_beginning_arraylist" />
+                app:layout_constraintTop_toBottomOf="@+id/rv_removing_beginning_arraylist" />
 
             <com.example.task3.customview.ResultView
-                android:id="@+id/cf_rv_removing_middle_arraylist"
+                android:id="@+id/rv_removing_middle_arraylist"
                 android:layout_width="120dp"
                 android:layout_height="60dp"
-                app:layout_constraintEnd_toStartOf="@+id/cf_rv_addBegin_linkedList"
+                app:layout_constraintEnd_toStartOf="@+id/rv_addBegin_linkedList"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cf_tv_removing_middle"
+                app:layout_constraintTop_toBottomOf="@+id/tv_removing_middle"
                 app:rv_head="ArrayList" />
 
             <com.example.task3.customview.ResultView
-                android:id="@+id/cf_rv_removing_middle_linkedList"
+                android:id="@+id/rv_removing_middle_linkedList"
                 android:layout_width="120dp"
                 android:layout_height="60dp"
-                app:layout_constraintEnd_toStartOf="@+id/cf_rv_addBegin_CopyOnWrite"
-                app:layout_constraintStart_toEndOf="@id/cf_rv_addMiddle_arraylist"
-                app:layout_constraintTop_toBottomOf="@+id/cf_tv_removing_middle"
+                app:layout_constraintEnd_toStartOf="@+id/rv_addBegin_CopyOnWrite"
+                app:layout_constraintStart_toEndOf="@id/rv_addMiddle_arraylist"
+                app:layout_constraintTop_toBottomOf="@+id/tv_removing_middle"
                 app:rv_head="LinkedList" />
 
             <com.example.task3.customview.ResultView
-                android:id="@+id/cf_rv_removing_middle_CopyOnWrite"
+                android:id="@+id/rv_removing_middle_CopyOnWrite"
                 android:layout_width="120dp"
                 android:layout_height="60dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/cf_rv_addBegin_linkedList"
-                app:layout_constraintTop_toBottomOf="@+id/cf_tv_removing_middle"
+                app:layout_constraintStart_toEndOf="@id/rv_addBegin_linkedList"
+                app:layout_constraintTop_toBottomOf="@+id/tv_removing_middle"
                 app:rv_head="CopyOnWrite" />
 
             <TextView
-                android:id="@+id/cf_tv_removing_end"
+                android:id="@+id/tv_removing_end"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:text="@string/removing_in_the_end"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cf_rv_removing_middle_arraylist" />
+                app:layout_constraintTop_toBottomOf="@+id/rv_removing_middle_arraylist" />
 
             <com.example.task3.customview.ResultView
-                android:id="@+id/cf_rv_removing_end_arraylist"
+                android:id="@+id/rv_removing_end_arraylist"
                 android:layout_width="120dp"
                 android:layout_height="60dp"
-                app:layout_constraintEnd_toStartOf="@+id/cf_rv_addBegin_linkedList"
+                app:layout_constraintEnd_toStartOf="@+id/rv_addBegin_linkedList"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cf_tv_removing_end"
+                app:layout_constraintTop_toBottomOf="@+id/tv_removing_end"
                 app:rv_head="ArrayList" />
 
             <com.example.task3.customview.ResultView
-                android:id="@+id/cf_rv_removing_end_linkedList"
+                android:id="@+id/rv_removing_end_linkedList"
                 android:layout_width="120dp"
                 android:layout_height="60dp"
-                app:layout_constraintEnd_toStartOf="@+id/cf_rv_addBegin_CopyOnWrite"
-                app:layout_constraintStart_toEndOf="@id/cf_rv_addMiddle_arraylist"
-                app:layout_constraintTop_toBottomOf="@+id/cf_tv_removing_end"
+                app:layout_constraintEnd_toStartOf="@+id/rv_addBegin_CopyOnWrite"
+                app:layout_constraintStart_toEndOf="@id/rv_addMiddle_arraylist"
+                app:layout_constraintTop_toBottomOf="@+id/tv_removing_end"
                 app:rv_head="LinkedList" />
 
             <com.example.task3.customview.ResultView
-                android:id="@+id/cf_rv_removing_end_CopyOnWrite"
+                android:id="@+id/rv_removing_end_CopyOnWrite"
                 android:layout_width="120dp"
                 android:layout_height="60dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/cf_rv_addBegin_linkedList"
-                app:layout_constraintTop_toBottomOf="@+id/cf_tv_removing_end"
+                app:layout_constraintStart_toEndOf="@id/rv_addBegin_linkedList"
+                app:layout_constraintTop_toBottomOf="@+id/tv_removing_end"
                 app:rv_head="CopyOnWrite" />
 
             <Button
-                android:id="@+id/cf_btn_clear"
+                android:id="@+id/btn_clear_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:text="@string/clear"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cf_rv_removing_end_linkedList" />
+                app:layout_constraintTop_toBottomOf="@+id/rv_removing_end_linkedList" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
-            android:id="@+id/cf_tv_size_desc"
+            android:id="@+id/tv_size_desc_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
+            android:visibility="visible"
             android:text="@string/collection_size_desc"
             android:textSize="20sp" />
 
         <FrameLayout
-            android:id="@+id/cf_frameLayout"
+            android:id="@+id/frameLayout_list"
             android:layout_width="match_parent"
             android:layout_height="450dp"
+            android:visibility="visible"
             android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
@@ -309,14 +311,14 @@
                 android:hint="@string/collection_size">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/cf_et_collectionSize"
+                    android:id="@+id/et_collectionSize"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:id="@+id/cf_btn_calculate"
+                android:id="@+id/btn_calculate_list"
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
                 android:layout_gravity="center|bottom"

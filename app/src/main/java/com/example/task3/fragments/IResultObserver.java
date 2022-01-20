@@ -1,7 +1,5 @@
 package com.example.task3.fragments;
 
-public interface ICollectionObserver {
-    void collectionIsCompleted();
-
+public interface IResultObserver {
     void dataSetChanged(Integer testID, String result);
 }
